@@ -21,6 +21,8 @@
     2 months ago
   </dd>
 
+  <% if session.fetch(:user_id) && @photo.owner_id == session.fetch(:user_id) %>
+
   <dt>Edit photo</dt>
   <dd>
     <form action="/update_photo/<%= @photo.id %>">
@@ -33,6 +35,8 @@
       <button>Update photo</button>
     </form>
   </dd>
+
+    <% end %>
 
   <dt>Delete photo</dt>
   <dd>
@@ -69,6 +73,8 @@
   <% end %>
 </table>
 
+<% if session.fetch(:user_id) %>
+
 <h3>Add a new comment</h3>
 
 <form action="/insert_comment_record" method="post">
@@ -80,3 +86,11 @@
 
   <button>Add comment</button>
 </form>
+<% else %>%
+<h3>Add a new comment</h3>
+
+<p>
+Login to comment
+</p>
+
+<% end %>
